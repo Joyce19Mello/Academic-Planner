@@ -2,9 +2,15 @@
 
 Drive: https://drive.google.com/drive/folders/1vKrCFn5vlJ7NRyeuf0zkG_SKuelQ5qqu
 
-# run-time
+# Instalação e Execução
 
-## Project setup
+## Instalação
+
+- Instalar o Node.js, disponível no site: https://nodejs.org/en/
+  O node é necessário para o uso do comando 'npm' e seus relacionados
+  
+- 
+
 ```
 npm install
 ```
