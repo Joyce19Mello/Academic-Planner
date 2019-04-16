@@ -1,11 +1,20 @@
 <template lang="pug">
-  .login
-    h1 {{titulo}}
-    p E-mail
-    el-input(placeholder='Please input', v-model='inputUser')
-    p Senha
-    el-input(placeholder='Please input password', v-model='inputPassword', show-password='')
-    el-button(plain='') Plain
+  .container-login
+    p.titulo-login Autenticação
+    .campos-login  
+      p E-mail
+      el-input(placeholder='Please input user', v-model='inputUser')
+  
+      p Senha
+      el-input(placeholder='Please input password', v-model='inputPassword', show-password='')
+      
+      .campo-recuperar-senha
+        <a href="Login">Recuperar Senha</a>
+      
+      el-button.botao-login(plain='') Enviar
+
+      .campo-criar-conta
+        <a href="Login">Criar Conta</a>
 </template>
 
 <script>
@@ -13,7 +22,6 @@ export default {
   name: 'Login',
   data() {
     return{
-        titulo: "Autenticação",
         inputUser: '',
         inputPassword: ''
     }
@@ -22,20 +30,37 @@ export default {
 </script>
 
 <style scoped lang="sass">
-h3
-  margin: 40px 0 0
+  p
+    margin-right: 130px;
 
-ul
-  list-style-type: none
-  padding: 0
+    margin-bottom: 2px;
 
-li
-  display: inline-block
-  margin: 0 10px
+  .botao-login
+    margin: 15px;
 
-a
-  color: #42b983
+  .container-login
+    background-color: white;
+    text-align: center;
+    border: 2px solid;
+    border-color: black;
+    max-width: 300px;
+    margin: auto;
 
-p
-    margin-right: 35%
+  .campos-login
+    background-color: white;
+    text-align: center;
+    border-top: 2px solid;
+    border-color: black;
+    max-width: 300px;
+    margin: auto;
+
+  .campo-recuperar-senha
+    margin-top: 15px;
+    font-size: 10px;
+    margin-right: 100px;
+  
+  .campo-criar-conta
+    margin-bottom: 15px;
+    font-size: 10px;
+
 </style>
