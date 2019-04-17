@@ -1,6 +1,7 @@
 # Academic Planner
 
-Sistema Web de controle de gestão de atividades para docente/pesquisador 
+Sistema Web de controle de gestão de atividades para docente/pesquisador.
+
 Um projeto desenvolvido como parte integrante da disicplina GCC209 – Programação Web, ofertada pelo Departamento de Ciência da Computação da Universidade Federal de Lavras.
 
 
