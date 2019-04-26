@@ -28,15 +28,15 @@ O Play segue basicamente a seguinte estrutura:
 
 Para esse projeto estamos usando a versão do Play 1.5.1.
 
-• PostgreSQL: PostgreSQL é um sistema gerenciador de banco de dados objeto relacional (SGBD), desenvolvido como projeto de código aberto.
+• PostgreSQL: PostgreSQL é um sistema gerenciador de banco de dados (SGBD) objeto relacional, desenvolvido como projeto de código aberto. 
 
-Iremos utilizar o Postgre 9.2 como gerenciador do nosso banco de dados, escolhemos esse ele pois hoje, o PostgreSQL é um dos SGBDs (Sistema Gerenciador de Bancos de Dados) de código aberto mais avançados, contando com recursos como:
+Iremos utilizar o Postgre 9.2 como gerenciador do nosso banco de dados. Escolhemos esse ele pois, hoje, o PostgreSQL é um dos SGBDs de código aberto mais avaçados, contando com recursos como:
   - Consultas complexas
   - Chaves estrangeiras
   - Integridade transacional
   - Controle de concorrência multi-versão
   - Suporte ao modelo híbrido objeto-relacional
-  - Ele tem facilidade de Acesso
+  - Facilidade de Acesso
 
 # Links
 
