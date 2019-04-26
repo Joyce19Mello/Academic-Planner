@@ -16,15 +16,15 @@ Um projeto desenvolvido como parte integrante da disicplina GCC209 – Programa�
 
 Escolhemos essa linguagem para o nosso Backend por ser uma linguagem de fácil manuseio e pelo fato de que alguns integrantes do grupo tem familiaridade com a mesma, sendo assim facilitando o desenvolvimento de nosso trabalho prático.
 
-• Play Framework: O Play framework foi construido tendo como um dos intuítos poupar o programador de configurações complicadas, do gerenciamento de arquivos XML, e de boa parte do que se refere a infraestrutura, o mesmo pode se focar mais no core bussiness (parte central de um negócio) da aplicação, com efetivo ganho de qualidade e produtividade.
+• Play Framework: O Play framework foi construído tendo como um dos intuitos poupar o programador de configurações complicadas, do gerenciamento de arquivos XML, e de boa parte do que se refere a infraestrutura, o mesmo pode se focar mais no core bussiness (parte central de um negócio) da aplicação, com efetivo ganho de qualidade e produtividade.
 
 Além de ser um framework MVC e como isso tornando o desenvolvimento Web muito veloz e divertido.
 
 O Play segue basicamente a seguinte estrutura:
-  - app - contêm os models, controllers e views do projeto;
-  - conf- contêm os arquivos de configuração como o arquivo de rotas (routes), configurações gerais da aplicação (application.conf), internacionalização, etc.;
-  - project – contêm os build scripts do projeto (os scripts são criados para a ferramenta sbt, que é uma ferramenta de build para Scala e Java). Raramente temos que alterá-lo;
-  - public – contêm recursos como arquivos javascript, css e imagens.
+  - app - contém os models, controllers e views do projeto;
+  - conf- contém os arquivos de configuração como o arquivo de rotas (routes), configurações gerais da aplicação (application.conf), internacionalização, etc.;
+  - project – contém os build scripts do projeto (os scripts são criados para a ferramenta sbt, que é uma ferramenta de build para Scala e Java). Raramente temos que alterá-lo;
+  - public – contém recursos como arquivos javascript, css e imagens.
 
 Para esse projeto estamos usando a versão do Play 1.5.1.
 
