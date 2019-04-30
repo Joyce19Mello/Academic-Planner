@@ -1,20 +1,19 @@
 <template lnag="pug">
   <div id="app">
     <HelloWorld/>
-    <Dashboard/>  
+<Login/> 
   </div>
 </template>
 
 <script>
-  import HelloWorld from './components/HelloWorld.vue'
-  import Dashboard from './components/Dashboard.vue'
+import HelloWorld from './components/HelloWorld.vue'
+import Login from './components/Login.vue'
 
-  export default {
-    name: 'app',
-    components: {
-      HelloWorld,
-      Dashboard
-    }
+export default {
+  name: 'app',
+  components: {
+    HelloWorld,
+    Login
   }
 </script>
 
