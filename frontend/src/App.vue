@@ -1,7 +1,7 @@
 <template lnag="pug">
   <div id="app">
     <HelloWorld/>
-    <Login/>   
+<Login/> 
   </div>
 </template>
 
@@ -15,7 +15,6 @@ export default {
     HelloWorld,
     Login
   }
-}
 </script>
 
 <style lang="sass">

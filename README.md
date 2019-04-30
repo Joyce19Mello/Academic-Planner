@@ -1,17 +1,42 @@
 # Academic Planner
 
-Sistema Web de controle de gestão de atividades para docente/pesquisador 
+Sistema Web de controle de gestão de atividades para docente/pesquisador.
+
 Um projeto desenvolvido como parte integrante da disicplina GCC209 – Programação Web, ofertada pelo Departamento de Ciência da Computação da Universidade Federal de Lavras.
 
 
 # Tecnologias Utilizadas
 
-•	Front-end: Vue.js. O Vue é um framework baseado em componentes reativos, usado especialmente para a criação de interfaces web, na maioria das vezes chamadas de SPA - Single Page Application ou aplicações de página única, com somente um arquivo html. Vue.js foi concebido para ser simples, reativo, baseado em componentes, compacto e expansível. 
+###	Front-end: 
+• Vue.js. O Vue é um framework baseado em componentes reativos, usado especialmente para a criação de interfaces web, na maioria das vezes chamadas de SPA - Single Page Application ou aplicações de página única, com somente um arquivo html. Vue.js foi concebido para ser simples, reativo, baseado em componentes, compacto e expansível. 
 
 
-•	Back-end: Node.js. O Node é uma plataforma para aplicações web escaláveis de alta performance que utiliza JavaScript, permitindo que o grupo trabalhe a linguagem pelo lado do servidor. O Node possui caracteristicas que otimizam o seu uso. Ele é leve, rápido, poderoso e também perfeito para lidar com um número muito grande de requisições.
+###	Back-end: 
+• Java: Java é uma linguagem de programação orientada a objetos desenvolvida na década de 90 por uma equipe de programadores chefiada por James Gosling, na empresa Sun Microsystems. O Java está em todos os lugares!
 
+Escolhemos essa linguagem para o nosso Backend por ser uma linguagem de fácil manuseio e pelo fato de que alguns integrantes do grupo tem familiaridade com a mesma, sendo assim facilitando o desenvolvimento de nosso trabalho prático.
 
+• Play Framework: O Play framework foi construído tendo como um dos intuitos poupar o programador de configurações complicadas, do gerenciamento de arquivos XML, e de boa parte do que se refere a infraestrutura, o mesmo pode se focar mais no core bussiness (parte central de um negócio) da aplicação, com efetivo ganho de qualidade e produtividade.
+
+Além de ser um framework MVC e como isso tornando o desenvolvimento Web muito veloz e divertido.
+
+O Play segue basicamente a seguinte estrutura:
+  - app - contém os models, controllers e views do projeto;
+  - conf- contém os arquivos de configuração como o arquivo de rotas (routes), configurações gerais da aplicação (application.conf), internacionalização, etc.;
+  - project – contém os build scripts do projeto (os scripts são criados para a ferramenta sbt, que é uma ferramenta de build para Scala e Java). Raramente temos que alterá-lo;
+  - public – contém recursos como arquivos javascript, css e imagens.
+
+Para esse projeto estamos usando a versão do Play 1.5.1.
+
+• PostgreSQL: PostgreSQL é um sistema gerenciador de banco de dados (SGBD) objeto relacional, desenvolvido como projeto de código aberto. 
+
+Iremos utilizar o Postgre 9.2 como gerenciador do nosso banco de dados. Escolhemos esse ele pois, hoje, o PostgreSQL é um dos SGBDs de código aberto mais avaçados, contando com recursos como:
+  - Consultas complexas
+  - Chaves estrangeiras
+  - Integridade transacional
+  - Controle de concorrência multi-versão
+  - Suporte ao modelo híbrido objeto-relacional
+  - Facilidade de Acesso
 
 # Links
 
@@ -21,12 +46,12 @@ Sitemap: https://www.gloomaps.com/xGeoKoRrtP
 
 # Instalação e Execução
 
-## Instalação
+## Comandos para configurar o Frontend
+
+### Instalação
 
 - Instalar o Node.js, disponível no site: https://nodejs.org/en/
   O node é necessário para o uso do comando 'npm' e seus relacionados
-  
-## Comandos para configurar o Frontend
 
 ### Instalção de dependências do projeto
 ```
@@ -50,3 +75,5 @@ npm run test
 
 ### Personalizar a configuração
 Olhe em [Referência de configuração](https://cli.vuejs.org/config/).
+
+## Comandos para configurar o Backend
