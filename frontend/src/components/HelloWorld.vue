@@ -15,7 +15,7 @@ export default {
 </script>
 
 <style scoped lang="sass">
-h3
+h1
   margin: 40px 0 0
 
 ul
