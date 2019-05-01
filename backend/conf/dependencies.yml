@@ -1,0 +1,7 @@
+# Application dependencies
+
+require:
+- play 1.5.x-localbuild
+- play -> docviewer latest.integration
+- org.postgresql -> postgresql 42.2.2:
+    force: true
