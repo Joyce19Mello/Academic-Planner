@@ -10,7 +10,7 @@ public class Professor extends GenericModel {
     @Id
     @Column(name="id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    public Long id;
+    public Integer id;
 
     @Column(name = "nome")
     public String nome;
