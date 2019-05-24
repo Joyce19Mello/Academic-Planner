@@ -1,29 +1,28 @@
-<template lnag="pug">
-  <div id="app">
-    <HelloWorld/>
-<Login/> 
-  </div>
+<template lang="pug">
+  div(id="app")
+    main-wrapper
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-import Login from './components/Login.vue'
+import MainWrapper from './components/layouts/MainWrapper.vue'
 
 export default {
   name: 'app',
   components: {
-    HelloWorld,
-    Login
+    MainWrapper
   }
+}
 </script>
 
 <style lang="sass">
-#app 
-  font-family: 'Avenir', Helvetica, Arial, sans-serif
-  -webkit-font-smoothing: antialiased
-  -moz-osx-font-smoothing: grayscale
-  text-align: center
-  color: #2c3e50
-  margin-top: 60px
+body
+  margin: 0
+  
+  #app 
+    font-family: 'Avenir', Helvetica, Arial, sans-serif
+    -webkit-font-smoothing: antialiased
+    -moz-osx-font-smoothing: grayscale
+    text-align: center
+    color: #2c3e50
 
 </style>

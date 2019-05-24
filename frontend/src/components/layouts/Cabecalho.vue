@@ -4,37 +4,45 @@
         .left
             .logo(@click="inicioClick")
 
-            .itens-menu
-                menu-item(v-if='verificarInicio' titulo="Início" icone="lnr-home" :active="activeRouter('dashboard')" @click="inicioClick")
-                menu-item(v-if='verificarConsulta' titulo="Consulta" icone="lnr-magnifier" :active="activeRouter('consulta')" @click="consultaClick")
-                menu-item(v-if='verificarCaixa' titulo="Caixa de Entrada" icone="lnr-inbox" :active="activeRouter('caixa-de-entrada')" @click="inboxClick")
-                menu-item(v-if='verificarAnalise' titulo="Análise" icone="lnr-checkmark-circle" :active="activeRouter('analise')" @click="analiseClick")
-                menu-item(v-if='verificarFavoritos' titulo="Favoritos" icone="lnr-star" :active="activeRouter('favoritos')" @click="favoritosClick")
-                menu-item(v-if='verificarConfigurador' titulo="Configurador" icone="lnr-cog" :active="activeRouter('configurador')" @click="configuradorClick")
+            .itens-menu(v-if='!usuarioLogado')
+                menu-item(titulo="Início" icone="lnr-home" :active="activeRouter('dashboard')" @click="inicioClick")
+                menu-item(titulo="Professores" icone="lnr-briefcase" :active="activeRouter('professores')" @click="professoresClick")
+                menu-item(titulo="Contato" icone="lnr-envelope" :active="activeRouter('contato')" @click="contatoClick")
+                
+            .itens-menu(v-if='usuarioLogado')
+                menu-item(titulo="Início" icone="lnr-home" :active="activeRouter('dashboard')" @click="inicioClick")
+                menu-item(titulo="Projetos" icone="lnr-briefcase" :active="activeRouter('projetos')" @click="projetosClick")
+                menu-item(titulo="Publicações" icone="lnr-cog" :active="activeRouter('configurador')" @click="publicacoesClick")
+                menu-item(titulo="Grupos" icone="lnr-envelope" :active="activeRouter('contato')" @click="gruposClick")
+                menu-item(titulo="Alunos" icone="lnr-checkmark-circle" :active="activeRouter('analise')" @click="alunosClick")
+                menu-item(titulo="Aulas" icone="lnr-star" :active="activeRouter('favoritos')" @click="aulasClick")
 
-        .right
+        .right(v-if='usuarioLogado')
             .user
                 .icon-user.lnr.lnr-user
                 .data
-                    h4 {{ usuarioLogado.nome | placeholder("Erro de autenticação") | truncate(20) }}
-                    h5 {{ usuarioLogado.perfilSelecionado.nome | placeholder("") | truncate(20) }}
-            .logout(@click="logoutClick")
-                .icon-logout.lnr.lnr-exit
+                    h4 Rafael Durelli
+            .login(@click="logout")
+                .icon-login.lnr.lnr-exit
+
+        .right(@click="loginClick" v-if='!usuarioLogado')
+            .login(@click="loginClick")
+                .icon-login.lnr.lnr-enter
 </template>
 
 <script>
 import MenuItem from '@/components/element/MenuItem'
 import RouterMixin from '@/utils/mixins/RouterMixin'
-import {
-  USUARIO_LOGOUT
-} from '@/store/actions.type.js'
-import { mapGetters } from 'vuex'
-import { telaInicio } from '@/utils/helpers/permissoes/inicio/inicio.js'
-import { consultarProcesso } from '@/utils/helpers/permissoes/consultar/consultar.js'
-import { telaCaixaDeEntrada } from '@/utils/helpers/permissoes/caixa/caixa.js'
-import { telaAnalise } from '@/utils/helpers/permissoes/analise/analise.js'
-import { telaFavoritos } from '@/utils/helpers/permissoes/favoritos/favorito.js'
-import { configurador } from '@/utils/helpers/permissoes/configurador/configurador.js'
+// import {
+//   USUARIO_LOGOUT
+// } from '@/store/actions.type.js'
+// import { mapGetters } from 'vuex'
+// import { telaInicio } from '@/utils/helpers/permissoes/inicio/inicio.js'
+// import { consultarProcesso } from '@/utils/helpers/permissoes/consultar/consultar.js'
+// import { telaCaixaDeEntrada } from '@/utils/helpers/permissoes/caixa/caixa.js'
+// import { telaAnalise } from '@/utils/helpers/permissoes/analise/analise.js'
+// import { telaFavoritos } from '@/utils/helpers/permissoes/favoritos/favorito.js'
+// import { configurador } from '@/utils/helpers/permissoes/configurador/configurador.js'
 
 export default {
   name: 'Cabecalho',
@@ -43,61 +51,54 @@ export default {
 
   data () {
     return {
-      consultarProcesso: consultarProcesso,
-      telaInicio: telaInicio,
-      telaCaixaDeEntrada: telaCaixaDeEntrada,
-      telaAnalise: telaAnalise,
-      telaFavoritos: telaFavoritos,
-      configurador: configurador
+      usuarioLogado: false
     }
   },
 
-  computed: {
-    ...mapGetters([
-      'usuarioLogado'
-    ]),
-    verificarInicio () {
-      return this.verificarPermissao(this.telaInicio)
-    },
-    verificarConsulta () {
-      return this.verificarPermissao(this.consultarProcesso)
-    },
-    verificarCaixa () {
-      return this.verificarPermissao(this.telaCaixaDeEntrada)
-    },
-    verificarAnalise () {
-      return this.verificarPermissao(this.telaAnalise)
-    },
-    verificarFavoritos () {
-      return this.verificarPermissao(this.telaFavoritos)
-    },
-    verificarConfigurador () {
-      return this.verificarPermissao(this.configurador)
-    }
+  mounted() {
+    this.$bus.$on('logar', () => this.logar())
+    this.$bus.$on('logout', () => this.logout())
   },
 
   methods: {
     inicioClick () {
       this.goToDashboard()
     },
-    consultaClick () {
-      this.goToConsulta('pastaTecnica')
+    professoresClick () {
+      this.goTo('professores')
     },
-    inboxClick () {
-      this.goToInbox()
+    contatoClick () {
+      this.goTo('contato')
     },
-    analiseClick () {
-      this.goToAnalise()
+    projetosClick () {
+      this.goTo('projetos')
     },
-    favoritosClick () {
-      this.goToFavoritos()
+    publicacoesClick () {
+        this.goTo('publicacoes')
     },
-    configuradorClick () {
-      this.goToConfigurador()
+    gruposClick () {
+        this.goTo('grupos')
+    },
+    alunosClick () {
+        this.goTo('alunos')
+    },
+    aulasClick () {
+        this.goTo('aulas')
+    },
+    loginClick () {
+      this.goTo('login')
     },
     logoutClick () {
-      this.$store.dispatch(USUARIO_LOGOUT)
-      this.logout()
+      // this.$store.dispatch(USUARIO_LOGOUT)
+      // this.logout()
+    },
+    logar () {
+        this.usuarioLogado = true
+        this.$bus.$emit('loga')
+    },
+    logout () {
+        this.usuarioLogado = false
+        this.$bus.$emit('logou')
     }
 
   }
@@ -126,10 +127,10 @@ export default {
 
             .logo
                 color: white
-                height: 50px
+                height: 80px
                 width: 200px
-                margin-left: -18px
-                background: url("../../assets/logo-branco.svg") no-repeat center
+                margin-top: 10px
+                background: url("../../assets/logo-academic.png") no-repeat center
                 background-size: contain
 
                 &:hover
@@ -141,6 +142,21 @@ export default {
         .right
             height: 100%
             display: flex
+
+            .login
+                cursor: pointer
+                color: white
+                width: 50px
+                display: flex
+                justify-content: center
+                align-items: center
+                padding: 15px 15px
+
+                .icon-login
+                    height: 26px
+                    font-size: 22px
+                    padding: 10px
+                    color: #57BC90
 
             .logout
                 cursor: pointer
@@ -155,7 +171,7 @@ export default {
                     height: 26px
                     font-size: 22px
                     padding: 10px
-                    color: #FF8C00
+                    color: #57BC90
 
                 &:hover
                     background-color: rgba(0, 0, 0, 0.1)
@@ -178,7 +194,7 @@ export default {
                     height: 26px
                     font-size: 22px
                     padding-right: 10px
-                    color: #FF8C00
+                    color: #57BC90
 
                 .data
 

@@ -4,7 +4,7 @@
  * métodos de rotas
  */
 
-import { mapGetters } from 'vuex'
+// import { mapGetters } from 'vuex'
 
 export default {
   data () {
@@ -79,6 +79,7 @@ export default {
      * @param route
      */
     goTo (route) {
+      console.log(route)
       this.$router.push({ name: route })
     }
   }

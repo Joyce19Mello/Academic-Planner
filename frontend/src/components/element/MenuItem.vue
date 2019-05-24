@@ -55,7 +55,7 @@ export default {
 
   .icone
     margin-right: 10px
-    color: #FF8C00
+    color: #57BC90
     font-size: 16px
 
   .indicator2
@@ -66,5 +66,5 @@ export default {
 #menu-item.active
 
   .indicator2
-    background-color: #FF8C00
+    background-color: #57BC90
 </style>
