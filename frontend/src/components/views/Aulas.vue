@@ -18,37 +18,36 @@
                         el-form(ref='form', :model='form', label-width='120px')
                             el-col.campo(:span='12')
                                 el-form-item(label='Nome da Disciplina')
-                                el-input(v-model='form.tituloProjeto')
+                                el-input(v-model='form.tituloProjeto',
+                                placeholder="ex Português")
                             
                             el-col.campo(:span='12')
                                 el-form-item(label='Classificação')
-                                el-input(v-model='form.areaEstudo')
+                                el-input(v-model='form.areaEstudo',
+                                placeholder="ex Graduação")
 
                             el-col.campo(:span='6')
                                 el-form-item(label='Código da Disciplina')
-                                el-date-picker(v-model="form.dataInicio" 
-                                    placeholder="informe um ano"
-                                    type="year")
+                                el-input(v-model='form.codigoDisciplina', placeholder="ex GCC-105")
                                                                 
                             el-col.campo(:span='24')
 
                                 el-form-item
                                     el-button( @click='limpar' ) Limpar
                                     el-button(type='primary', @click='onSubmit') Cadastrar
-                
+             
         el-table(:data='tableData', style='width: 100%')
-            el-table-column(prop='tituloProjeto', label='Título', width='480')
-            el-table-column(prop='areaEstudo', label='Área de Estudo', width='380')
-            el-table-column(prop='dataInicio', label='Ano de Inicio', width='180')
-            el-table-column(prop='dataFim', label='Ano de Término', width='180')
-            el-table-column(label='Ações')
+            el-table-column(prop='codigoDisciplina', label='Código da Disciplina')
+            el-table-column(prop='nomeDisciplina', label='Nome da Disciplina')
+            el-table-column(prop='classificacao', label='Classificação')
+            el-table-column(label='Ações', width='100')
                 .lnr.lnr-pencil.editar
 
 </template>
 
 <script>
 import FormHelper from '@/components/layouts/FormHelper'
-import { PROJETOS } from '@/utils/mocks/projetos'
+import { AULAS } from '@/utils/mocks/aulas'
 
 export default {
     components: FormHelper,
@@ -56,22 +55,18 @@ export default {
     data(){
         return {
             form: {
-                tituloProjeto: '',
-                areaEstudo: '',
-                dataInicio: '',
-                dataFim: '',
-                resumoProjeto: ''
+                codigoDisciplina: '',
+                nomeDisciplina: '',
+                classificacao: '',
             },
-            tableData: PROJETOS
+            tableData: AULAS
         }
     },
     methods: {
         limpar(){
-            this.tituloProjeto = '',
-            this.areaEstudo = '',
-            this.dataInicio = '',
-            this.dataFim = '',
-            this.resumoProjeto = ''
+            this.codigoDisciplina = '',
+            this.nomeDisciplina = '',
+            this.classificacao = ''
         },
         onSubmit() {
             console.log(this.form)

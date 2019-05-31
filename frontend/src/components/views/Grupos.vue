@@ -37,10 +37,9 @@
                                     el-button(type='primary', @click='onSubmit') Cadastrar
                 
         el-table(:data='tableData', style='width: 100%')
-            el-table-column(prop='tituloProjeto', label='Título', width='480')
-            el-table-column(prop='areaEstudo', label='Área de Estudo', width='380')
+            el-table-column(prop='nomeGrupo', label='Título', width='480')
+            el-table-column(prop='areaEstudo', label='Área de Estudo', width='530')
             el-table-column(prop='dataInicio', label='Ano de Inicio', width='180')
-            el-table-column(prop='dataFim', label='Ano de Término', width='180')
             el-table-column(label='Ações')
                 .lnr.lnr-pencil.editar
 
@@ -48,7 +47,7 @@
 
 <script>
 import FormHelper from '@/components/layouts/FormHelper'
-import { PROJETOS } from '@/utils/mocks/projetos'
+import { GRUPOS } from '@/utils/mocks/grupos'
 
 export default {
     components: FormHelper,
@@ -56,21 +55,19 @@ export default {
     data(){
         return {
             form: {
-                tituloProjeto: '',
+                nomeGrupo: '',
                 areaEstudo: '',
                 dataInicio: '',
-                dataFim: '',
                 resumoProjeto: ''
             },
-            tableData: PROJETOS
+            tableData: GRUPOS
         }
     },
     methods: {
         limpar(){
-            this.tituloProjeto = '',
+            this.nomeGrupo = '',
             this.areaEstudo = '',
             this.dataInicio = '',
-            this.dataFim = '',
             this.resumoProjeto = ''
         },
         onSubmit() {
