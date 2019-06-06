@@ -77,3 +77,53 @@ npm run test
 Olhe em [Referência de configuração](https://cli.vuejs.org/config/).
 
 ## Comandos para configurar o Backend
+
+
+### Convenções de Código
+
+##Comentários de classe obedecerão o seguinte formato:
+/*-
+ * Classname             (nome da classe Java)
+ * 
+ * Version information   (versionamento)
+ *
+ * Date                  (Data e Hora)
+ * 
+ * author                (autor(res) da criação)
+ * Copyright notice      (informações da classe, pra que serve, idéia principal
+ */
+
+## Comentários de métodos obedecerão o seguinte formato: 
+/*-
+ * Copyright notice      (informações do método, pra que serve, idéia principal
+ * 
+ * @param                 (Parâmetros do método, tipo)
+ *
+ * @return                (Tipo de retorno do método, significados)
+ * 
+ */
+
+## Comentários de implementação do código será separado por //
+ //comentários.
+
+## Variável será declarada e utilizada seguindo o padrão CamelCase
+nomeSobrenome
+
+## Package e Import Statements seguira o seguinte formato:
+Primeiro os pacotes e depois os imports em seguida
+  package pacote.teste;
+  import pacote.teste.Teste;
+
+## Alinhamento do código
+  Será iniciado com tab.
+  Quando a expressão não couber em uma única linha, quebrá-la da seguinte maneira:
+    Após uma vírgula.
+    Antes de um operador.
+
+## Classes e Interfaces
+Classes Java e interfaces seguem algumas regras de formatação, veja:
+
+  Sem espaço entre um método e o parênteses e o nome do método "(" início de lista de parâmetros;
+  Abertura da chaves "{" aparece no fim da mesma linha que foi declarado o código ;
+  Fechamento da chaves "}" começa uma linha alinhada no conjunto do método a qual foi criada, exceto quando há códigos em parte em branco(vazio) ou nulo }"devendo aparecer imediatamente depois de aberto com "{"
+  Métodos são sempre separados por uma linha em branco.
