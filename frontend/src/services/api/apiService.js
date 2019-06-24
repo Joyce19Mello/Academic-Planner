@@ -11,14 +11,14 @@ const ApiService = {
 		Vue.use(VueAxios, axios)
 		// Vue.use(Cors)
 		axios.defaults.baseURL ='http://localhost:9000/'
-		this.setHeader()
+		// this.setHeader()
 	},
 
-	setHeader () {
-		Vue.axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded'
-		Vue.axios.defaults.headers.post['Access-Control-Allow-Origin'] = '*'
-		Vue.axios.defaults.headers.post['Accept'] = 'application/json'
-	},
+	// setHeader () {
+	// 	Vue.axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded'
+	// 	Vue.axios.defaults.headers.post['Access-Control-Allow-Origin'] = '*'
+	// 	Vue.axios.defaults.headers.post['Accept'] = 'application/json'
+	// },
 
 	async get (resource, slug = '') {
 		try {

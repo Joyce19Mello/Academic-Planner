@@ -46,7 +46,7 @@
 
 <script> 
 import FormHelper from '@/components/layouts/FormHelper'
-import ProfessoresService from '@/services/professoresService'
+import ProfessorService from '@/services/professorService'
 
 export default {
     name: 'Contato',
@@ -68,7 +68,7 @@ export default {
     },
     methods: {
         onSubmit() {
-            ProfessoresService.save('professor/save', this.form)
+            ProfessorService.save('professor/save', this.form)
                 .then((result) => {
                     this.$message({
                         showClose: true,

@@ -13,7 +13,7 @@
 <script>
 import Card from '@/components/element/Card'
 // import { PROFESSORES } from '@/utils/mocks/professores'
-import ProfessoresService from '@/services/professoresService'
+import ProfessorService from '@/services/professorService'
 
 export default {
     name: 'Professores',
@@ -24,10 +24,10 @@ export default {
         }
     },
     mounted () {
-        ProfessoresService.listAll('professor/list')
-            .then((response) => {
-                this.professores = response; 
-            })
+        ProfessorService.listAll('professor/list')
+            .then(result => {
+                this.professores = result.data; 
+            });
     }
 }
 </script>

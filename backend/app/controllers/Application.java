@@ -21,10 +21,10 @@ public class Application extends Controller {
 //
 //        professor.save();
 
-        List<Professor> p = Professor.findAll();
-        renderJSON(p);
+//        List<Professor> p = Professor.findAll();
+//        renderJSON(p);
 
-//        renderTemplate("public/index.html");
+        renderTemplate("public/index.html");
     }
 
 }
