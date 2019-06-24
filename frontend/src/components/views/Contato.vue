@@ -3,7 +3,7 @@
         .informativo-boasVindas
             p.informativo-titulo Contato
         
-        form-helper
+        .form-helper
             div(slot='form-content')
                 el-form(ref='form', :model='form', label-width='120px')
                     el-col.campo(:span='12')
@@ -17,7 +17,7 @@
                     el-col.campo(:span='12')
 
                         el-form-item(label='Professor')
-                        el-select(v-model='form.prof', placeholder='Selecione o professor que receberá o contato', value-key="id")
+                        el-select(v-model='form.professor', placeholder='Selecione o professor que receberá o contato', value-key="id")
                             el-option(v-for='professor in professores' :key='professor.id' :label='professor.nome' :value='professor')
                     
                     el-col.campo(:span='12')
@@ -40,6 +40,7 @@
 <script>
 import { PROFESSORES } from '@/utils/mocks/professores'
 import FormHelper from '@/components/layouts/FormHelper'
+import ContatoService from '@/services/contatoService'
 
 export default {
 name: 'Contato',
@@ -50,7 +51,7 @@ components: FormHelper,
             form: {
                 nome: '',
                 email: '',
-                prof: {},
+                professor: {},
                 assunto: '',
                 mensagem: ''
             }
@@ -60,7 +61,12 @@ components: FormHelper,
     },
     methods: {
         onSubmit() {
-            console.log(this.form)
+            // this.form.professor = this.form.professor.id;
+            // this.form.professor = 1;
+            ContatoService.contact('contato/contact', this.form)
+                .then((response) => {
+                    console.log(response);
+                });
         },
         limpar() {
             this.form.nome = '';

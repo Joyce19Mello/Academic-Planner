@@ -13,8 +13,8 @@ GET     /public/                                staticDir:public
 
 #Autenticação
 POST    /login                                  SecureController.autenticacao
-GET     /logout                                 SecureController.doLogout
-GET     /usuarioLogado                          SecureController.usuarioLogado
+#GET     /logout                                 SecureController.doLogout
+#GET     /usuarioLogado                          SecureController.usuarioLogado
 
 
 # Rotas Professores
@@ -66,3 +66,7 @@ GET     /publicacao/{id}                        PublicacaoController.listById
 POST    /upload/save                            PublicInterfaceController.uploadArquivoPdf
 POST    /upload/image/save                      PublicInterfaceController.uploadImage
 GET     /download/{key}                         PublicInterfaceController.download
+
+#Contato
+POST    /contato/contact                        ContatoController.contact
+GET     /contato/findById/{idProfessor}         ContatoController.getContatos

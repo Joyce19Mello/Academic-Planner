@@ -1,7 +1,12 @@
 # Application dependencies
 
 require:
-- play 1.5.x-localbuild
-- play -> docviewer latest.integration
-- org.postgresql -> postgresql 42.2.2:
-    force: true
+    - play 1.5.x-localbuild
+    - play -> docviewer latest.integration
+    - org.postgresql -> postgresql 42.2.2:
+        force: true
+    - net.sf.flexjson -> flexjson 2.1
+    - org.hibernate -> hibernate-spatial 5.2.13.Final
+    - log4j -> apache-log4j-extras 1.2.17
+    - play -> pdf 0.9
+    - org.mockito -> mockito-core 1.10.19

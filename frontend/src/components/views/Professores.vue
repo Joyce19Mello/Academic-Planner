@@ -12,15 +12,22 @@
 
 <script>
 import Card from '@/components/element/Card'
-import { PROFESSORES } from '@/utils/mocks/professores'
+// import { PROFESSORES } from '@/utils/mocks/professores'
+import ProfessoresService from '@/services/professoresService'
 
 export default {
     name: 'Professores',
     components: { Card },
     data(){
         return {
-            professores: PROFESSORES
+            professores: []
         }
+    },
+    mounted () {
+        ProfessoresService.listAll('professor/list')
+            .then((response) => {
+                this.professores = response; 
+            })
     }
 }
 </script>

@@ -40,12 +40,13 @@
                     el-col.campo(:span='24')
                         el-form-item
                             el-button( @click='limpar' ) Limpar
-                            el-button(type='primary', @click='onSubmit') Enviar
+                            el-button(type='primary', @click='onSubmit', :disabled="!disabilitarBotao()") Enviar
 
 </template>
 
 <script> 
 import FormHelper from '@/components/layouts/FormHelper'
+import ProfessoresService from '@/services/professoresService'
 
 export default {
     name: 'Contato',
@@ -67,7 +68,21 @@ export default {
     },
     methods: {
         onSubmit() {
-            console.log(this.form)
+            ProfessoresService.save('professor/save', this.form)
+                .then((result) => {
+                    this.$message({
+                        showClose: true,
+                        message: result.data,
+                        type: 'success'
+                    });
+                })
+                .catch((error) => {
+                    this.$message({
+                        showClose: true,
+                        message: error,
+                        type: 'warning'
+                    });
+                });
         },
         limpar() {
             this.form.nome = '';
@@ -77,19 +92,24 @@ export default {
             this.form.informacoes = '';
             this.form.senha = '';
             this.form.confirmacaoSenha = '';
+        },
+        disabilitarBotao() {
+            if(this.form) {
+                return this.form.nome != '' &&
+                this.form.email != '' &&
+                this.form.sala != '' &&
+                this.form.telefone != '' &&
+                this.form.informacoes != '' &&
+                this.verificarSenhas();
+            }
+            return false;
+        },
+        verificarSenhas() {
+            if(this.form.senha != '' && this.form.confirmacaoSenha != '' && this.form.senha === this.form.confirmacaoSenha) {
+                return true;
+            } 
+            return false;
         }
-        // ,
-        // verificaEnviar() {
-        //     if(this.form) {
-        //         return !this.form.nome &&
-        //         !this.form.email &&
-        //         !this.form.prof &&
-        //         !this.form.assunto &&
-        //         !this.form.mensagem
-        //     } else {
-        //         return false
-        //     }
-        // }
     }
 }
 </script>

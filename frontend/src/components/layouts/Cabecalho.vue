@@ -12,10 +12,10 @@
             .itens-menu(v-if='usuarioLogado')
                 menu-item(titulo="Início" icone="lnr-home" :active="activeRouter('dashboard')" @click="inicioClick")
                 menu-item(titulo="Projetos" icone="lnr-briefcase" :active="activeRouter('projetos')" @click="projetosClick")
-                menu-item(titulo="Publicações" icone="lnr-cog" :active="activeRouter('configurador')" @click="publicacoesClick")
-                menu-item(titulo="Grupos" icone="lnr-envelope" :active="activeRouter('contato')" @click="gruposClick")
-                menu-item(titulo="Alunos" icone="lnr-checkmark-circle" :active="activeRouter('analise')" @click="alunosClick")
-                menu-item(titulo="Aulas" icone="lnr-star" :active="activeRouter('favoritos')" @click="aulasClick")
+                menu-item(titulo="Publicações" icone="lnr-cog" :active="activeRouter('publicacoes')" @click="publicacoesClick")
+                menu-item(titulo="Grupos" icone="lnr-envelope" :active="activeRouter('grupos')" @click="gruposClick")
+                menu-item(titulo="Alunos" icone="lnr-checkmark-circle" :active="activeRouter('alunos')" @click="alunosClick")
+                menu-item(titulo="Aulas" icone="lnr-star" :active="activeRouter('aulas')" @click="aulasClick")
 
         .right(v-if='usuarioLogado')
             .user
@@ -99,6 +99,7 @@ export default {
     logout () {
         this.usuarioLogado = false
         this.$bus.$emit('logou')
+        this.goToDashboard()
     }
 
   }
