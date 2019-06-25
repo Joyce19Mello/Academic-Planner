@@ -2,8 +2,6 @@ package controllers;
 
 import models.Contato;
 import models.Professor;
-
-import java.util.ArrayList;
 import java.util.List;
 
 public class ContatoController extends DefaultController{

@@ -8,8 +8,11 @@
             <sourceFolder url="file://$MODULE_DIR$/app" isTestSource="false" />
             <sourceFolder url="file://$MODULE_DIR$/test" isTestSource="true" />
         </content>
-                <content url="file:///opt/play-1.5.2/modules/docviewer">
-            <sourceFolder url="file:///opt/play-1.5.2/modules/docviewer/app" isTestSource="false" />
+                <content url="file:///opt/play-1.5.0/modules/pdf-0.9">
+            <sourceFolder url="file:///opt/play-1.5.0/modules/pdf-0.9/app" isTestSource="false" />
+        </content>
+        <content url="file:///opt/play-1.5.1/modules/docviewer">
+            <sourceFolder url="file:///opt/play-1.5.1/modules/docviewer/app" isTestSource="false" />
         </content>
 
         <orderEntry type="inheritedJdk" />
@@ -17,37 +20,40 @@
             <library name="Project Libraries">
                 <CLASSES>
                     <root url="file://$MODULE_DIR$/lib" />
-                    <root url="file://$MODULE_DIR$/../../../../../opt/play-1.5.2/modules/docviewer/lib"/>
+                    <root url="file://$MODULE_DIR$/../../../../../../opt/play-1.5.0/modules/pdf-0.9/lib"/>
+                    <root url="file://$MODULE_DIR$/../../../../../../opt/play-1.5.1/modules/docviewer/lib"/>
 
                 </CLASSES>
                 <JAVADOC />
                 <SOURCES>
-                                        <root url="file://$MODULE_DIR$/../../../../../opt/play-1.5.2/modules/docviewer/src"/>
+                                        <root url="file://$MODULE_DIR$/../../../../../../opt/play-1.5.0/modules/pdf-0.9/src"/>
+                    <root url="file://$MODULE_DIR$/../../../../../../opt/play-1.5.1/modules/docviewer/src"/>
 
                 </SOURCES>
                 <jarDirectory url="file://$MODULE_DIR$/lib" recursive="false" />
-                                <jarDirectory url="file://$MODULE_DIR$/../../../../../opt/play-1.5.2/modules/docviewer/lib" recursive="false"/>
+                                <jarDirectory url="file://$MODULE_DIR$/../../../../../../opt/play-1.5.0/modules/pdf-0.9/lib" recursive="false"/>
+                <jarDirectory url="file://$MODULE_DIR$/../../../../../../opt/play-1.5.1/modules/docviewer/lib" recursive="false"/>
 
             </library>
         </orderEntry>
         <orderEntry type="module-library">
             <library name="PlayFramework Dependencies">
                 <CLASSES>
-                    <root url="file:///opt/play-1.5.2/framework/lib" />
+                    <root url="file:///opt/play-1.5.1/framework/lib" />
                 </CLASSES>
                 <JAVADOC />
                 <SOURCES />
-                <jarDirectory url="file:///opt/play-1.5.2/framework/lib" recursive="false" />
+                <jarDirectory url="file:///opt/play-1.5.1/framework/lib" recursive="false" />
             </library>
         </orderEntry>
         <orderEntry type="module-library">
             <library>
                 <CLASSES>
-                    <root url="jar:///opt/play-1.5.2/framework/play-1.5.2.jar!/" />
+                    <root url="jar:///opt/play-1.5.1/framework/play-1.5.1.jar!/" />
                 </CLASSES>
                 <JAVADOC />
                 <SOURCES>
-                    <root url="file:///opt/play-1.5.2/framework/src" />
+                    <root url="file:///opt/play-1.5.1/framework/src" />
                 </SOURCES>
             </library>
         </orderEntry>
