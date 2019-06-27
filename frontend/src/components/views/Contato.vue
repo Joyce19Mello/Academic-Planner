@@ -38,8 +38,9 @@
 </template>
 
 <script>
-import { PROFESSORES } from '@/utils/mocks/professores'
+// import { PROFESSORES } from '@/utils/mocks/professores'
 import FormHelper from '@/components/layouts/FormHelper'
+import ProfessorService from '@/services/professorService'
 import ContatoService from '@/services/contatoService'
 
 export default {
@@ -47,7 +48,7 @@ name: 'Contato',
 components: FormHelper,
     data(){
         return {
-            professores: PROFESSORES,
+            professores: {},
             form: {
                 nome: '',
                 email: '',
@@ -61,11 +62,14 @@ components: FormHelper,
     },
     methods: {
         onSubmit() {
-            // this.form.professor = this.form.professor.id;
-            // this.form.professor = 1;
             ContatoService.contact('contato/contact', this.form)
                 .then((response) => {
-                    console.log(response);
+                    this.$message({
+                        showClose: true,
+                        message: response.data,
+                        type: 'success'
+                    });
+                    this.limpar();
                 });
         },
         limpar() {
@@ -87,6 +91,12 @@ components: FormHelper,
         //         return false
         //     }
         // }
+    },
+    mounted() {
+        ProfessorService.listAll('professor/list')
+            .then(result => {
+                this.professores = result.data; 
+            });
     }
 }
 </script>

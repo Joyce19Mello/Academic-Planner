@@ -60,7 +60,7 @@
 
 <script>
 import FormHelper from '@/components/layouts/FormHelper'
-import { PROJETOS } from '@/utils/mocks/projetos'
+// import { PROJETOS } from '@/utils/mocks/projetos'
 
 export default {
     components: FormHelper,
@@ -74,7 +74,7 @@ export default {
                 dataFim: '',
                 resumoProjeto: ''
             },
-            tableData: PROJETOS
+            tableData: {}
         }
     },
     methods: {
@@ -88,6 +88,9 @@ export default {
         onSubmit() {
             console.log(this.form)
         }
+    },
+    mounted() {
+        
     }
 }
 </script>

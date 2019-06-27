@@ -15,11 +15,11 @@
                 el-row(:gutter="20")
                     el-col.campo(:span='8', :offset="8")
                         el-form-item(label='Senha')
-                        el-input(v-model='form.senha')
+                        el-input(v-model='form.senha', type="password")
                 
-                el-row(:gutter="20")
-                    el-col.campo.alinhar-esquerda(:span='8', :offset="8")
-                        a.link(href='#/login' @click='esqueceuSenha') Recuperar senha
+                //- el-row(:gutter="20")
+                //-     el-col.campo.alinhar-esquerda(:span='8', :offset="8")
+                //-         a.link(href='#/login' @click='esqueceuSenha') Recuperar senha
 
                 el-row(:gutter="20")
                     el-col.campo(:span='8', :offset="8")
@@ -34,6 +34,7 @@
 <script>
 import FormHelper from '@/components/layouts/FormHelper'
 import RouterMixin from '@/utils/mixins/RouterMixin'
+import LoginService from '@/services/loginService'
 
 export default {
     name: 'Login',
@@ -57,8 +58,31 @@ export default {
         //   this.goTo('criarConta')
         },
         onSubmit () {
-            this.$bus.$emit('logar')
-            this.goToDashboard()
+            LoginService.login('login', this.form)
+                .then(response => {
+                    if(response.data === 'Login efetuado com sucesso!') {
+                        this.$message({
+                            showClose: true,
+                            message: response.data,
+                            type: 'success'
+                        });
+                        this.$bus.$emit('logar')
+                        this.goToDashboard()
+                    } else {
+                        this.$message({
+                            showClose: true,
+                            message: response.data,
+                            type: 'warning'
+                        });
+                    }
+                })
+                .catch((error) => {
+                    this.$message({
+                        showClose: true,
+                        message: error,
+                        type: 'warning'
+                    });
+                });
         }
     }
 }
