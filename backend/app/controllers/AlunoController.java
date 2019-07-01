@@ -1,17 +1,24 @@
 package controllers;
 
 import models.Aluno;
+import models.Professor;
+
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class AlunoController extends DefaultController{
 
-    public static void list(){
-        List<Aluno> aluno = new ArrayList<>();
+    public static void list(Integer id){
+        List<Aluno> alunos = new ArrayList<>();
 
-        aluno = Aluno.findAll();
+        alunos = Aluno.find("id_professor = :id_professor")
+                .setParameter("id_professor", id)
+                .fetch();
 
-        renderJSON(aluno);
+        Collections.reverse(alunos);
+
+        renderJSON(alunos);
     }
 
     public static void save(Aluno aluno) {
@@ -21,7 +28,10 @@ public class AlunoController extends DefaultController{
             return;
         }
 
+        aluno.professor = Professor.findById(aluno.professor.id);
+
         aluno.save();
+
         renderText("Cadastro Realizado com sucesso!");
     }
 

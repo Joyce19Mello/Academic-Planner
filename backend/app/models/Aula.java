@@ -20,7 +20,7 @@ public class Aula extends GenericModel {
 
     @ManyToOne
     @JoinColumn(name = "id_tipo_classificacao_aula", referencedColumnName="id")
-    public ClassificacaoAula tipoClassifacaoAula;
+    public ClassificacaoAula classificacaoAula;
 
     @Column(name = "arquivo_digital")
     public String arquivoDigital;

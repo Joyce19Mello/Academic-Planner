@@ -21,13 +21,17 @@ public class Aluno extends GenericModel {
 
     @ManyToOne
     @JoinColumn(name = "id_tipo_categoria_aluno", referencedColumnName="id")
-    public CategoriaAluno tipoCategoriaAluno;
+    public CategoriaAluno categoriaAluno;
+
+    @ManyToOne
+    @JoinColumn(name = "id_professor", referencedColumnName="id")
+    public Professor professor;
 
     @Column(name="data_inicio")
-    public Date dataInicio;
+    public String dataInicio;
 
     @Column(name="data_fim")
-    public Date dataFim;
+    public String dataFim;
 
     @Column(name = "flg_orientacao")
     public Boolean orientacao;

@@ -9,33 +9,33 @@
                 
                     el-col.campo(:span='12')
                         el-form-item(label='Nome Completo')
-                        el-input(v-model='form.nome')
+                        el-input(v-model='form.nome', maxlength="255")
                     
                     el-col.campo(:span='12')
                         el-form-item(label='E-mail')
-                        el-input(v-model='form.email')
+                        el-input(v-model='form.email', maxlength="255")
                     
                     el-col.campo(:span='12')
                         el-form-item(label='Sala')
-                        el-input(v-model='form.sala')
+                        el-input(v-model='form.sala', maxlength="255")
                     
                     el-col.campo(:span='12')
                         el-form-item(label='Telefone')
-                        el-input(v-model='form.telefone')
+                        el-input(v-model='form.telefone', maxlength="255")
 
                     el-col.campo(:span='24')
                     
                         el-form-item(label='Informações profissionais (Formação acadêmica e objetos de estudo)')
-                        el-input(type='textarea', v-model='form.informacoes' :autosize='{ minRows: 4, maxRows: 8}')
+                        el-input(type='textarea', v-model='form.informacoesProfissionais' :autosize='{ minRows: 4, maxRows: 8}', maxlength="255")
 
 
                     el-col.campo(:span='12')
                         el-form-item(label='Senha')
-                        el-input(v-model='form.senha', type="password")
+                        el-input(v-model='form.senha', type="password", maxlength="255")
 
                     el-col.campo(:span='12')
                         el-form-item(label='Confirmar senha')
-                        el-input(v-model='form.confirmacaoSenha', type="password")
+                        el-input(v-model='form.confirmacaoSenha', type="password", maxlength="255")
 
                     el-col.campo(:span='24')
                         el-form-item
@@ -58,7 +58,7 @@ export default {
                 email: '',
                 sala: '',
                 telefone: '',
-                informacoes: '',
+                informacoesProfissionais: '',
                 senha: '',
                 confirmacaoSenha: ''
             }
@@ -75,6 +75,7 @@ export default {
                         message: result.data,
                         type: 'success'
                     });
+                    this.limpar();
                 })
                 .catch((error) => {
                     this.$message({
@@ -89,7 +90,7 @@ export default {
             this.form.email = '';
             this.form.sala = '';
             this.form.telefone = '';
-            this.form.informacoes = '';
+            this.form.informacoesProfissionais = '';
             this.form.senha = '';
             this.form.confirmacaoSenha = '';
         },
@@ -99,7 +100,7 @@ export default {
                 this.form.email != '' &&
                 this.form.sala != '' &&
                 this.form.telefone != '' &&
-                this.form.informacoes != '' &&
+                this.form.informacoesProfissionais != '' &&
                 this.verificarSenhas();
             }
             return false;

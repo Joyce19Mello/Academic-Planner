@@ -30,21 +30,21 @@ GET     /professor/mensagens/{id}               ProfessorController.mensagens
 # Rotas Alunos
 POST    /aluno/save                             AlunoController.save
 POST    /aluno/edit                             AlunoController.edit
-GET     /aluno/list                             AlunoController.list
+GET     /aluno/list/{id}                            AlunoController.list
 GET     /aluno/{id}                             AlunoController.listById
 #POST    /aluno/delete/{id}                      AlunoController.delete
 
 # Rotas Aulas
 POST    /aula/save                              AulaController.save
 POST    /aula/edit                              AulaController.edit
-GET     /aula/list                              AulaController.list
+GET     /aula/list/{id}                         AulaController.list
 GET     /aula/{id}                              AulaController.listById
 #GET     /aula/delete/{id}                       AulaController.delete
 
 # Rotas Grupos
 POST    /grupo/save                             GrupoController.save
 POST    /grupo/edit                             GrupoController.edit
-GET     /grupo/list                             GrupoController.list
+GET     /grupo/list/{id}                        GrupoController.list
 GET     /grupo/{id}                             GrupoController.listById
 #GET     /grupo/delete/{id}                      GrupoController.delete
 
@@ -70,3 +70,8 @@ GET     /download/{key}                         PublicInterfaceController.downlo
 #Contato
 POST    /contato/contact                        ContatoController.contact
 GET     /contato/findById/{idProfessor}         ContatoController.getContatos
+
+#rotas Categorias
+GET     /categoriaPublicacao/list               CategoriaController.listCategoriaPublicacao
+GET     /categoriaAluno/list                    CategoriaController.listcategoriaAluno
+GET     /categoriaAula/list                     CategoriaController.listclassificacaoAula
