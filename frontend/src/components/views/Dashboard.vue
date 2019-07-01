@@ -23,7 +23,7 @@
                         | Organização de publicações em conferências, resumos e periódicos
         
         div(v-if='usuarioLogado')
-            p TUTS
+            p.boas-vindas Bem vindo {{fulano}}
 
          
 </template>
@@ -33,7 +33,10 @@
         name: 'Dashboard',
         data(){
             return {
-                usuarioLogado: false
+                usuarioLogado: false,
+                usuario: {
+                    nome: 'Rafael'
+                }
             }
         },
         mounted() {

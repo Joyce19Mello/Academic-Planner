@@ -20,9 +20,13 @@ public class Grupo extends GenericModel {
     @Column(name="area_estudo")
     public String areaEstudo;
 
-    @OneToMany
+    @ManyToOne
     @JoinColumn(name = "id_professor", referencedColumnName="id")
-    public List<Professor> professores;
+    public Professor professor;
+//
+//    @OneToMany
+//    @JoinColumn(name = "id_professor", referencedColumnName="id")
+//    public List<Professor> professores;
 
     @Column(name="ano_publicacao")
     public Date anoPublicacao;

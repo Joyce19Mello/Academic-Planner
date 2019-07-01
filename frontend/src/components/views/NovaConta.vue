@@ -75,6 +75,7 @@ export default {
                         message: result.data,
                         type: 'success'
                     });
+                    this.limpar();
                 })
                 .catch((error) => {
                     this.$message({

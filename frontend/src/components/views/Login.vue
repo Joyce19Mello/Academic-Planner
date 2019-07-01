@@ -67,7 +67,7 @@ export default {
                             type: 'success'
                         });
                         this.$bus.$emit('logar')
-                        this.goToDashboard()
+                        this.goTo('projetos')
                     } else {
                         this.$message({
                             showClose: true,

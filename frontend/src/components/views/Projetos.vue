@@ -18,7 +18,7 @@
                         el-form(ref='form', :model='form', label-width='120px')
                             el-col.campo(:span='12')
                                 el-form-item(label='Titulo do Projeto')
-                                el-input(v-model='form.tituloProjeto')
+                                el-input(v-model='form.nomeTituloProjeto')
                             
                             el-col.campo(:span='12')
                                 el-form-item(label='Área de Estudo')
@@ -28,14 +28,16 @@
                                 el-form-item(label='Ano de Início')
                                 el-date-picker(v-model="form.dataInicio" 
                                     placeholder="informe um ano"
-                                    type="year")
+                                    type="year"
+                                    value-format="yyyy")
                                     
                             
                             el-col.campo(:span='6')
                                 el-form-item(label='Ano de Término')
                                 el-date-picker(v-model="form.dataFim"
                                     placeholder="informe um ano"
-                                    type="year")
+                                    type="year"
+                                    value-format="yyyy")
                             
                             el-col.campo(:span='24')
                             
@@ -46,21 +48,24 @@
 
                                 el-form-item
                                     el-button( @click='limpar' ) Limpar
-                                    el-button(type='primary', @click='onSubmit') Cadastrar
+                                    el-button(type='primary', @click='onSubmit' v-if='!this.form.id') Cadastrar
+                                    el-button(type='primary', @click='onSubmit' v-if='this.form.id') Editar
                 
         el-table(:data='tableData', style='width: 100%')
-            el-table-column(prop='tituloProjeto', label='Título', width='480')
+            el-table-column(prop='nomeTituloProjeto', label='Título', width='480')
             el-table-column(prop='areaEstudo', label='Área de Estudo', width='380')
             el-table-column(prop='dataInicio', label='Ano de Inicio', width='180')
             el-table-column(prop='dataFim', label='Ano de Término', width='180')
             el-table-column(label='Ações')
-                .lnr.lnr-pencil.editar
+                template(slot-scope="scope")
+                    .lnr.lnr-pencil.editar(@click="editRow(scope.$index, tableData)")
 
 </template>
 
 <script>
 import FormHelper from '@/components/layouts/FormHelper'
 // import { PROJETOS } from '@/utils/mocks/projetos'
+import ProjetoService from '@/services/projetoService'
 
 export default {
     components: FormHelper,
@@ -68,29 +73,56 @@ export default {
     data(){
         return {
             form: {
-                tituloProjeto: '',
+                nomeTituloProjeto: '',
                 areaEstudo: '',
                 dataInicio: '',
                 dataFim: '',
                 resumoProjeto: ''
             },
-            tableData: {}
+            tableData: []
         }
     },
     methods: {
         limpar(){
-            this.tituloProjeto = '',
-            this.areaEstudo = '',
-            this.dataInicio = '',
-            this.dataFim = '',
-            this.resumoProjeto = ''
+            this.form.nomeTituloProjeto = ''
+            this.form.areaEstudo = ''
+            this.form.dataInicio = ''
+            this.form.dataFim = ''
+            this.form.resumoProjeto = ''
+            this.form.id = undefined
         },
         onSubmit() {
-            console.log(this.form)
+            ProjetoService.save('projeto/save', this.form)
+                .then(result => {
+                    this.$message({
+                        showClose: true,
+                        message: result.data,
+                        type: 'success'
+                    })
+                    this.limpar()
+                    this.findProjetos()
+                })
+                .catch((error) => {
+                    this.$message({
+                        showClose: true,
+                        message: error,
+                        type: 'warning'
+                    })
+                })
+        },
+        findProjetos() {
+            ProjetoService.listAll('projeto/list')
+                .then(result => {
+                    this.tableData = result.data; 
+                });
+        },
+        editRow(index, rows) {
+            console.log(rows, index);
+            this.form = rows[index];
         }
     },
-    mounted() {
-        
+    mounted () {
+        this.findProjetos()
     }
 }
 </script>

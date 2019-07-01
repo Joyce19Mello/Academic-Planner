@@ -20,14 +20,18 @@ public class Publicacao extends GenericModel {
     @JoinColumn(name = "id_projeto", referencedColumnName="id")
     public Projeto projeto;
 
+    @ManyToOne
+    @JoinColumn(name = "id_categoria_publicacao", referencedColumnName="id")
+    public CategoriaPublicacao categoriaPublicacao;
+
     @Column(name="ano_publicacao")
-    public Date anoPublicacao;
+    public String anoPublicacao;
 
     @Column(name="resumo_publicacao")
     public String resumoPublicacao;
 
-    @Column(name = "arquivo_digital")
-    public String arquivoDigitalBibtex;
+//    @Column(name = "arquivo_digital")
+//    public String arquivoDigitalBibtex;
 
 
 }
