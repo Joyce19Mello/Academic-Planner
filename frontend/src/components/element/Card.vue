@@ -17,7 +17,7 @@
             el-collapse.descricao
                 el-collapse-item(name="1")
                     div.descricao-texto
-                        span {{professor.descricao}}
+                        span {{professor.informacoesProfissionais}}
                     
                     a.entrar-contato(href='#/contato' @click='entrarContato()') Entrar em contato
          

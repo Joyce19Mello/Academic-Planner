@@ -10,7 +10,7 @@
                 menu-item(titulo="Contato" icone="lnr-envelope" :active="activeRouter('contato')" @click="contatoClick")
                 
             .itens-menu(v-if='usuarioLogado')
-                menu-item(titulo="Início" icone="lnr-home" :active="activeRouter('dashboard')" @click="inicioClick")
+                //- menu-item(titulo="Início" icone="lnr-home" :active="activeRouter('dashboard')" @click="inicioClick")
                 menu-item(titulo="Projetos" icone="lnr-briefcase" :active="activeRouter('projetos')" @click="projetosClick")
                 menu-item(titulo="Publicações" icone="lnr-cog" :active="activeRouter('publicacoes')" @click="publicacoesClick")
                 menu-item(titulo="Grupos" icone="lnr-envelope" :active="activeRouter('grupos')" @click="gruposClick")
@@ -62,7 +62,11 @@ export default {
 
   methods: {
     inicioClick () {
-      this.goToDashboard()
+        if(!this.usuarioLogado) {
+            this.goToDashboard()
+        } else {
+            this.goTo('projetos')
+        }
     },
     professoresClick () {
       this.goTo('professores')

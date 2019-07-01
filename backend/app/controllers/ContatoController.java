@@ -7,9 +7,11 @@ import java.util.List;
 public class ContatoController extends DefaultController{
     public static void contact(Contato contato){
 
-        contato.professor = Professor.findById(contato.professor.id);
+            contato.professor = Professor.findById(contato.professor.id);
 
         contato.save();
+
+        renderText("Mensagem enviada com sucesso!");
     }
 
     public static void getContatos(Integer idProfessor){

@@ -22,12 +22,15 @@ public class Projeto extends GenericModel {
     public List<Aluno> alunos;
 
     @Column(name="data_inicio")
-    public Date dataInicio;
+    public String dataInicio;
 
     @Column(name="data_fim")
-    public Date dataFim;
+    public String dataFim;
 
     @Column(name="resumo_publicacao")
     public String resumoProjeto;
+
+    @Column(name="area_estudo")
+    public String areaEstudo;
 
 }

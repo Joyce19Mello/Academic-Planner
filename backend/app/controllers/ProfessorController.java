@@ -16,7 +16,7 @@ public class ProfessorController extends DefaultController{
 
     public static void save(Professor professor) {
 
-        if(professor == null) {
+        if(professor == null || professor.nome == null) {
             renderText("Erro ao Salvar!");
             return;
         }
