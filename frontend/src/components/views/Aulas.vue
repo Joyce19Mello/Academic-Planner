@@ -34,7 +34,7 @@
 								el-form-item
 									el-button( @click='limpar' ) Limpar
 									el-button(type='primary', @click='onSubmit' v-if='!this.form.id') Cadastrar
-									el-button(type='primary', @click='onSubmit' v-if='this.form.id') Editar
+									el-button(type='primary', @click='onSubmitEdit' v-if='this.form.id') Editar
 			 
 		el-table(:data='tableData', style='width: 100%')
 			el-table-column(prop='codigoDisciplina', label='Código da Disciplina')
@@ -93,13 +93,32 @@ export default {
 					})
 				})
 		},
+		onSubmitEdit() {
+			this.preparaAula()
+			AulaService.edit('aula/edit/' + this.form.id, this.form)
+				.then(result => {
+					this.$message({
+						showClose: true,
+						message: result.data,
+						type: 'success'
+					})
+					this.limpar()
+					this.findAulas()
+				})
+				.catch((error) => {
+					this.$message({
+						showClose: true,
+						message: error,
+						type: 'warning'
+					})
+				})
+		},
 		preparaAula() {
 			this.form.professor = {};
 			this.form.professor.id = 1;
-
 		},
 		editRow(index, rows) {
-			this.form = rows[index];
+			this.form = JSON.parse(JSON.stringify(rows[index]));
 		},
 		findAulas() {
 			AulaService.listAll('aula/list', 1)

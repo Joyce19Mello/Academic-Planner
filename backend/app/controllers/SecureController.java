@@ -10,7 +10,7 @@ public class SecureController extends DefaultController{
                 .first();
 
         if(p != null) {
-            renderText("Login efetuado com sucesso!");
+            renderJSON(p);
         } else {
             renderText("Usuário não encontrado!");
         }

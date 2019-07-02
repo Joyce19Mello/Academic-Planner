@@ -34,4 +34,23 @@ public class GrupoController extends DefaultController{
 
         renderText("Cadastro Realizado com sucesso!");
     }
+
+    public static void edit(Long id, Grupo grupo) throws Exception{
+
+        if(grupo == null || grupo.nomeGrupo == null) {
+            renderText("Erro ao Editar!");
+            return;
+        }
+
+        Grupo grupoNoBanco = Grupo.findById(id);
+
+        Grupo grupoSalvo = grupoNoBanco.editar(grupo);
+
+        if (grupoSalvo != null) {
+
+            renderText("Edição Realizada com sucesso!");
+        } else {
+            renderText("Erro ao Editar!");
+        }
+    }
 }

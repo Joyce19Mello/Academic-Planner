@@ -45,8 +45,14 @@
         },
         methods: {
             logar () {
-                console.log("HERERERE")
-                this.usuarioLogado = true
+                if (localStorage.getItem('professor')) {
+                    try {
+                        this.professor = JSON.parse(localStorage.getItem('professor'));
+                        this.usuarioLogado = true;
+                    } catch(e) {
+                        this.usuarioLogado = false;
+                    }
+                }
             },
             logout () {
                 this.usuarioLogado = false

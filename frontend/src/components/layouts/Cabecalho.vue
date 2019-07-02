@@ -21,7 +21,7 @@
             .user
                 .icon-user.lnr.lnr-user
                 .data
-                    h4 Rafael Durelli
+                    h4 {{professor.nome}}
             .login(@click="logout")
                 .icon-login.lnr.lnr-exit
 
@@ -51,7 +51,8 @@ export default {
 
   data () {
     return {
-      usuarioLogado: false
+      usuarioLogado: false,
+      professor: {}
     }
   },
 
@@ -97,11 +98,21 @@ export default {
       // this.logout()
     },
     logar () {
-        this.usuarioLogado = true
+        if (localStorage.getItem('professor')) {
+            try {
+                this.professor = JSON.parse(localStorage.getItem('professor'));
+                this.usuarioLogado = true;
+            } catch(e) {
+                localStorage.removeItem('professor');
+                this.usuarioLogado = false;
+            }
+        }
         this.$bus.$emit('loga')
     },
     logout () {
-        this.usuarioLogado = false
+        localStorage.removeItem('professor');
+        this.usuarioLogado = false;
+
         this.$bus.$emit('logou')
         this.goToDashboard()
     }

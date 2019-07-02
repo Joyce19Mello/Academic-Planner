@@ -18,15 +18,39 @@ public class ProjetoController extends DefaultController{
         renderJSON(projetos);
     }
 
-    public static void save(Projeto projeto) {
+    public static void save(Projeto projeto) throws Exception {
 
         if(projeto == null || projeto.nomeTituloProjeto == null) {
             renderText("Erro ao Salvar!");
             return;
         }
 
-        projeto.save();
+        Projeto projetoSalvo = projeto.salvar();
 
-        renderText("Cadastro Realizado com sucesso!");
+        if (projetoSalvo != null) {
+
+            renderText("Cadastro Realizado com sucesso!");
+        } else {
+            renderText("Erro ao Salvar!");
+        }
+    }
+
+    public static void edit(Long id, Projeto projeto) throws Exception {
+
+        if(projeto == null || projeto.nomeTituloProjeto == null) {
+            renderText("Erro ao Editar!");
+            return;
+        }
+
+        Projeto projetoNoBanco = Projeto.findById(id);
+
+        Projeto projetoSalvo = projetoNoBanco.editar(projeto);
+
+        if (projetoSalvo != null) {
+
+            renderText("Edição Realizada com sucesso!");
+        } else {
+            renderText("Erro ao Editar!");
+        }
     }
 }

@@ -49,7 +49,7 @@
 								el-form-item
 									el-button( @click='limpar' ) Limpar
 									el-button(type='primary', @click='onSubmit' v-if='!this.form.id') Cadastrar
-									el-button(type='primary', @click='onSubmit' v-if='this.form.id') Editar
+									el-button(type='primary', @click='onSubmitEdit' v-if='this.form.id') Editar
 				
 		el-table(:data='tableData', style='width: 100%')
 			el-table-column(prop='nomeAluno', label='Nome do Aluno', width='480')
@@ -78,7 +78,8 @@ export default {
 				categoriaAluno: '',
 				dataInicio: '',
 				orientacao: false,
-				dataFim: ''
+				dataFim: '',
+				professor: {}
 			},
 			tableData: [],
 			categorias: []
@@ -113,19 +114,39 @@ export default {
 					})
 				})
 		},
+		onSubmitEdit() {
+			this.preparaAluno()
+			AlunoService.edit('aluno/edit/'+this.form.id, this.form)
+				.then(result => {
+					this.$message({
+						showClose: true,
+						message: result.data,
+						type: 'success'
+					})
+					this.limpar()
+					this.findAlunos()
+				})
+				.catch((error) => {
+					this.$message({
+						showClose: true,
+						message: error,
+						type: 'warning'
+					})
+				})
+		},
 		preparaAluno() {
-			this.form.professor = {};
-			this.form.professor.id = 1;
-
 			if(this.form.orientacao) {
 				this.form.dataFim = '-';
 			}
 		},
+		initAluno() {
+			this.form.professor = JSON.parse(localStorage.getItem('professor'));
+		},
 		editRow(index, rows) {
-			this.form = rows[index];
+			this.form = JSON.parse(JSON.stringify(rows[index]));
 		},
 		findAlunos() {
-			AlunoService.listAll('aluno/list', 1)
+			AlunoService.listAll('aluno/list', this.form.professor.id)
 				.then(result => {
 					this.tableData = result.data; 
 				});
@@ -141,6 +162,7 @@ export default {
 		}
 	},
 	mounted() {
+		this.initAluno()
 		this.findAlunos()
 		this.findCategorias()
 	} 

@@ -30,8 +30,23 @@ public class Publicacao extends GenericModel {
     @Column(name="resumo_publicacao")
     public String resumoPublicacao;
 
-//    @Column(name = "arquivo_digital")
-//    public String arquivoDigitalBibtex;
+    @ManyToOne
+    @JoinColumn(name = "id_professor", referencedColumnName="id")
+    public Professor professor;
+
+    public Publicacao editar(Publicacao publicacao) throws  Exception {
+
+        this.nomeTituloPublicacao = publicacao.nomeTituloPublicacao;
+        this.projeto = Projeto.findById(publicacao.projeto.id);
+        this.categoriaPublicacao = CategoriaPublicacao.findById(publicacao.categoriaPublicacao.id);
+        this.anoPublicacao = publicacao.anoPublicacao;
+        this.resumoPublicacao = publicacao.resumoPublicacao;
+
+        this.merge();
+
+        return this.save();
+
+    }
 
 
 }

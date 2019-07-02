@@ -60,10 +60,12 @@ export default {
         onSubmit () {
             LoginService.login('login', this.form)
                 .then(response => {
-                    if(response.data === 'Login efetuado com sucesso!') {
+                    if(response.data !== 'Usuário não encontrado!') {
+                        const professor = JSON.stringify(response.data);
+                        localStorage.setItem('professor', professor);
                         this.$message({
                             showClose: true,
-                            message: response.data,
+                            message: 'Login efetuado com sucesso!',
                             type: 'success'
                         });
                         this.$bus.$emit('logar')

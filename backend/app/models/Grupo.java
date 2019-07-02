@@ -28,7 +28,19 @@ public class Grupo extends GenericModel {
 //    @JoinColumn(name = "id_professor", referencedColumnName="id")
 //    public List<Professor> professores;
 
-    @Column(name="ano_publicacao")
-    public Date anoPublicacao;
+    @Column(name="data_inicio")
+    public String dataInicio;
+
+    public Grupo editar(Grupo grupo) throws  Exception {
+
+        this.nomeGrupo = grupo.nomeGrupo;
+        this.areaEstudo = grupo.areaEstudo;
+        this.dataInicio = grupo.dataInicio;
+
+        this.merge();
+
+        return this.save();
+
+    }
 
 }

@@ -2,7 +2,7 @@ package controllers;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import flexjson.JSONSerializer;
+//import flexjson.JSONSerializer;
 import play.Play;
 import play.libs.Time;
 import play.mvc.Controller;
@@ -47,13 +47,13 @@ public class DefaultController extends Controller {
 	/**
 	 * Renderiza um JSON utilizando o serializador informado.
 	 */
-    protected static void renderJSON(Object model, JSONSerializer js) {
-
-    	String json = js.serialize(model);
-
-		renderJSON(json);
-    }
-    
+//    protected static void renderJSON(Object model, JSONSerializer js) {
+//
+//    	String json = js.serialize(model);
+//
+//		renderJSON(json);
+//    }
+//
     protected static void renderJSON(Object model) {
 
     	renderJSON(gson.toJson(model));
@@ -62,13 +62,13 @@ public class DefaultController extends Controller {
     /*
 	 * Renderiza um JSON utilizando o serializador informado.
 	 */
-    protected static void renderJSON(Collection<Object> models, JSONSerializer js) {
-
-    	String json = js.serialize(models);
-
-		renderJSON(json);
-    }
-    
+//    protected static void renderJSON(Collection<Object> models, JSONSerializer js) {
+//
+//    	String json = js.serialize(models);
+//
+//		renderJSON(json);
+//    }
+//
     /**
      * Caso algum dos objetos passados como parâmetro forem null, retorna 404.
      */

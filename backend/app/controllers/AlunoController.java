@@ -35,5 +35,24 @@ public class AlunoController extends DefaultController{
         renderText("Cadastro Realizado com sucesso!");
     }
 
+    public static void edit(Long id, Aluno aluno) throws Exception{
+
+        if(aluno == null || aluno.nomeAluno == null) {
+            renderText("Erro ao Editar!");
+            return;
+        }
+
+        Aluno alunoNoBanco = Aluno.findById(id);
+
+        Aluno alunoSalvo = alunoNoBanco.editar(aluno);
+
+        if (alunoSalvo != null) {
+
+            renderText("Edição Realizada com sucesso!");
+        } else {
+            renderText("Erro ao Editar!");
+        }
+    }
+
 }
 

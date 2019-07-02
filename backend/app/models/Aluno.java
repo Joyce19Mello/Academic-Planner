@@ -3,7 +3,9 @@ package models;
 import play.db.jpa.GenericModel;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 public class Aluno extends GenericModel {
@@ -15,9 +17,6 @@ public class Aluno extends GenericModel {
 
     @Column(name="nome")
     public String nomeAluno;
-
-    @Column(name="codigo")
-    public String codigoDisciplina;
 
     @ManyToOne
     @JoinColumn(name = "id_tipo_categoria_aluno", referencedColumnName="id")
@@ -38,5 +37,19 @@ public class Aluno extends GenericModel {
 
     @Column(name = "arquivo_digital")
     public String arquivoDigitalAluno;
+
+    public Aluno editar(Aluno aluno) throws  Exception {
+
+        this.nomeAluno = aluno.nomeAluno;
+        this.categoriaAluno = CategoriaAluno.findById(aluno.categoriaAluno.id);
+        this.dataInicio = aluno.dataInicio;
+        this.dataFim = aluno.dataFim;
+        this.orientacao = aluno.orientacao;
+
+        this.merge();
+
+        return this.save();
+
+    }
 
 }

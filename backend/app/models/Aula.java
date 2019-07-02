@@ -24,4 +24,20 @@ public class Aula extends GenericModel {
 
     @Column(name = "arquivo_digital")
     public String arquivoDigital;
+
+    @ManyToOne
+    @JoinColumn(name = "id_professor", referencedColumnName="id")
+    public Professor professor;
+
+    public Aula editar(Aula aula) throws  Exception {
+
+        this.nomeDisciplina = aula.nomeDisciplina;
+        this.codigoDisciplina = aula.codigoDisciplina;
+        this.classificacaoAula = aula.classificacaoAula;
+
+        this.merge();
+
+        return this.save();
+
+    }
 }

@@ -47,15 +47,24 @@
 
 							el-col.campo(:span='24')
 
+								el-upload.upload-demo(drag, action='https://jsonplaceholder.typicode.com/posts/', :on-preview='handlePreview', :on-remove='handleRemove', :file-list='fileList', multiple)
+									i.el-icon-upload
+									.el-upload__text
+										| Drop file here or 
+										em click to upload
+									.el-upload__tip(slot='tip') jpg/png files with a size less than 500kb
+
+							el-col.campo(:span='24')
+
 								el-form-item
 									el-button( @click='limpar' ) Limpar
 									el-button(type='primary', @click='onSubmit' v-if='!this.form.id') Cadastrar
-									el-button(type='primary', @click='onSubmit' v-if='this.form.id') Editar
+									el-button(type='primary', @click='onSubmitEdit' v-if='this.form.id') Editar
 				
 		el-table(:data='tableData', style='width: 100%')
-			el-table-column(prop='nomeTituloPublicacao', label='Título', width='480')
-			el-table-column(prop='categoriaPublicacao.tipoCategoriaPublicacao', label='Categoria', width='380')
-			el-table-column(prop='projeto.nomeTituloProjeto', label='ProjetoOrigem', width='180')
+			el-table-column(prop='nomeTituloPublicacao', label='Título', width='280')
+			el-table-column(prop='categoriaPublicacao.tipoCategoriaPublicacao', label='Categoria', width='280')
+			el-table-column(prop='projeto.nomeTituloProjeto', label='ProjetoOrigem', width='480')
 			el-table-column(prop='anoPublicacao', label='Ano', width='180')
 			el-table-column(label='Ações')
 				template(slot-scope="scope")
@@ -115,9 +124,27 @@ export default {
 					})
 				})
 		},
+		onSubmitEdit() {
+			PublicacaoService.edit('publicacao/edit/'+this.form.id, this.form)
+				.then(result => {
+					this.$message({
+						showClose: true,
+						message: result.data,
+						type: 'success'
+					})
+					this.limpar()
+					this.findPublicacoes()
+				})
+				.catch((error) => {
+					this.$message({
+						showClose: true,
+						message: error,
+						type: 'warning'
+					})
+				})
+		},
 		editRow(index, rows) {
-			console.log(rows, index);
-			this.form = rows[index];
+			this.form = JSON.parse(JSON.stringify(rows[index]));
 		},
 		findPublicacoes() {
 			PublicacaoService.listAll('publicacao/list')
@@ -136,9 +163,13 @@ export default {
 				.then(result => {
 					this.categorias = result.data; 
 				});
+		},
+		initPublicacao() {
+			this.form.professor = JSON.parse(localStorage.getItem('professor'));
 		}
 	},
 	mounted() {
+		this.initPublicacao()
 		this.findPublicacoes()
 		this.findProjetos()
 		this.findCategorias()

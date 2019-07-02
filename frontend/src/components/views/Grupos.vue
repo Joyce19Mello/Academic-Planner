@@ -36,7 +36,7 @@
 								el-form-item
 									el-button( @click='limpar' ) Limpar
 									el-button(type='primary', @click='onSubmit' v-if='!this.form.id') Cadastrar
-									el-button(type='primary', @click='onSubmit' v-if='this.form.id') Editar
+									el-button(type='primary', @click='onSubmitEdit' v-if='this.form.id') Editar
 				
 		el-table(:data='tableData', style='width: 100%')
 			el-table-column(prop='nomeGrupo', label='Título', width='480')
@@ -74,8 +74,6 @@ export default {
 			this.form.id = undefined;
 		},
 		onSubmit() {
-			this.form.professor = {};
-			this.form.professor.id = 1;
 			GrupoService.save('grupo/save', this.form)
 				.then(result => {
 					this.$message({
@@ -94,19 +92,41 @@ export default {
 					})
 				})
 		},
+		onSubmitEdit() {
+			GrupoService.edit('grupo/edit/'+this.form.id, this.form)
+				.then(result => {
+					this.$message({
+						showClose: true,
+						message: result.data,
+						type: 'success'
+					})
+					this.limpar()
+					this.findGrupos()
+				})
+				.catch((error) => {
+					this.$message({
+						showClose: true,
+						message: error,
+						type: 'warning'
+					})
+				})
+		},
 		editRow(index, rows) {
-			console.log(rows, index);
-			this.form = rows[index];
+			this.form = JSON.parse(JSON.stringify(rows[index]));
 		},
 		findGrupos() {
 			GrupoService.listAll('grupo/list', 1)
 				.then(result => {
 					this.tableData = result.data; 
 				});
+		},
+		initGrupo() {
+			this.form.professor = JSON.parse(localStorage.getItem('professor'));
 		}
 		
 	},
 	mounted() {
+		this.initGrupo()
 		this.findGrupos()
 	} 
 }

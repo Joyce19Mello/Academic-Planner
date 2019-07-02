@@ -1,6 +1,5 @@
 package controllers;
 
-import models.Projeto;
 import models.Publicacao;
 
 import java.util.ArrayList;
@@ -28,5 +27,25 @@ public class PublicacaoController extends DefaultController{
         publicacao.save();
 
         renderText("Cadastro Realizado com sucesso!");
+    }
+
+    public static void edit(Long id, Publicacao publicacao) throws Exception{
+
+        if(publicacao == null || publicacao.nomeTituloPublicacao == null) {
+            renderText("Erro ao Editar!");
+            return;
+        }
+
+        Publicacao publicacaoNoBanco = Publicacao.findById(id);
+
+        Publicacao publicacaoSalva;
+        publicacaoSalva = publicacaoNoBanco.editar(publicacao);
+
+        if (publicacaoSalva != null) {
+
+            renderText("Edição Realizada com sucesso!");
+        } else {
+            renderText("Erro ao Editar!");
+        }
     }
 }

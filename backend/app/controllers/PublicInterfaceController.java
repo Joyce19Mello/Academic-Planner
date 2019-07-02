@@ -1,6 +1,6 @@
 package controllers;
 
-import org.apache.tika.Tika;
+//import org.apache.tika.Tika;
 import play.data.Upload;
 import play.i18n.Messages;
 import play.libs.IO;
@@ -26,8 +26,8 @@ public class PublicInterfaceController extends DefaultController {
 		String realType = null;
 
 		// Detecta o tipo de arquivo pela assinatura (Magic)
-		Tika tika = new Tika();
-		realType = tika.detect(file.asFile());
+//		Tika tika = new Tika();
+//		realType = tika.detect(file.asFile());
 
 		returnIfNotFound(realType);
 
@@ -71,8 +71,8 @@ public class PublicInterfaceController extends DefaultController {
 		String realType = null;
 
 		// Detecta o tipo de arquivo pela assinatura (Magic)
-		Tika tika = new Tika();
-		realType = tika.detect(file.asFile());
+//		Tika tika = new Tika();
+//		realType = tika.detect(file.asFile());
 
 		returnIfNotFound(realType);
 
@@ -111,8 +111,8 @@ public class PublicInterfaceController extends DefaultController {
 		String realType = null;
 
 		// Detecta o tipo de arquivo pela assinatura (Magic)
-		Tika tika = new Tika();
-		realType = tika.detect(file.asFile());
+//		Tika tika = new Tika();
+//		realType = tika.detect(file.asFile());
 
 		returnIfNotFound(realType);
 
@@ -157,8 +157,8 @@ public class PublicInterfaceController extends DefaultController {
 		String realType = null;
 
 		// Detecta o tipo de arquivo pela assinatura (Magic)
-		Tika tika = new Tika();
-		realType = tika.detect(arquivoTemporario);
+//		Tika tika = new Tika();
+//		realType = tika.detect(arquivoTemporario);
 
 		// Verifica se o arquivo é do tipo imagem conhecido
 		if(realType.contains("image/jpeg") ||
