@@ -8,10 +8,12 @@ import java.util.Collections;
 import java.util.List;
 
 public class ProjetoController extends DefaultController{
-    public static void list(){
+    public static void list(Integer id){
         List<Projeto> projetos = new ArrayList<>();
 
-        projetos = Projeto.findAll();
+        projetos = Projeto.find("id_professor = :id_professor")
+                .setParameter("id_professor", id)
+                .fetch();
 
         Collections.reverse(projetos);
 

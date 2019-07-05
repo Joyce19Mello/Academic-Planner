@@ -115,7 +115,7 @@ export default {
 			this.form = JSON.parse(JSON.stringify(rows[index]));
 		},
 		findGrupos() {
-			GrupoService.listAll('grupo/list', 1)
+			GrupoService.listAll('grupo/list', this.form.professor.id)
 				.then(result => {
 					this.tableData = result.data; 
 				});

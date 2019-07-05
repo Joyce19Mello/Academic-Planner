@@ -147,7 +147,7 @@ export default {
 				})
 		},
 		findProjetos() {
-			ProjetoService.listAll('projeto/list')
+			ProjetoService.listAll('projeto/list', this.form.professor.id)
 				.then(result => {
 					this.tableData = result.data; 
 				});

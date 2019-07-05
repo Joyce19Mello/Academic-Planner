@@ -28,6 +28,15 @@
 							el-col.campo(:span='6')
 								el-form-item(label='Código da Disciplina')
 								el-input(v-model='form.codigoDisciplina')
+
+							el-col.campo(:span='24')
+								el-form-item(label='Arquivos da aula')
+								el-upload.upload-demo(drag, :before-upload='arquivoUpado', action='https://jsonplaceholder.typicode.com/posts/', :on-preview='handlePreview', :on-remove='handleRemove', :file-list='fileList', multiple)
+									i.el-icon-upload
+									.el-upload__text
+										| Arraste os arquivo ou 
+										em clique para fazer upload
+									.el-upload__tip(slot='tip')
 																
 							el-col.campo(:span='24')
 
@@ -35,7 +44,7 @@
 									el-button( @click='limpar' ) Limpar
 									el-button(type='primary', @click='onSubmit' v-if='!this.form.id') Cadastrar
 									el-button(type='primary', @click='onSubmitEdit' v-if='this.form.id') Editar
-			 
+
 		el-table(:data='tableData', style='width: 100%')
 			el-table-column(prop='codigoDisciplina', label='Código da Disciplina')
 			el-table-column(prop='nomeDisciplina', label='Nome da Disciplina')
@@ -74,7 +83,6 @@ export default {
 			this.form.id = undefined;
 		},
 		onSubmit() {
-			this.preparaAula()
 			AulaService.save('aula/save', this.form)
 				.then(result => {
 					this.$message({
@@ -94,7 +102,6 @@ export default {
 				})
 		},
 		onSubmitEdit() {
-			this.preparaAula()
 			AulaService.edit('aula/edit/' + this.form.id, this.form)
 				.then(result => {
 					this.$message({
@@ -113,15 +120,11 @@ export default {
 					})
 				})
 		},
-		preparaAula() {
-			this.form.professor = {};
-			this.form.professor.id = 1;
-		},
 		editRow(index, rows) {
 			this.form = JSON.parse(JSON.stringify(rows[index]));
 		},
 		findAulas() {
-			AulaService.listAll('aula/list', 1)
+			AulaService.listAll('aula/list', this.form.professor.id)
 				.then(result => {
 					this.tableData = result.data; 
 				});
@@ -134,9 +137,13 @@ export default {
 		},
 		orientacaoClick() {
 			this.form.dataFim = '';
+		},
+		initAula(){
+			this.form.professor = JSON.parse(localStorage.getItem('professor'));
 		}
 	},
 	mounted() {
+		this.initAula()
 		this.findAulas()
 		this.findCategorias()
 	} 

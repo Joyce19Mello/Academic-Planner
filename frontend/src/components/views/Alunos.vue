@@ -45,6 +45,15 @@
 									:disabled="form.orientacao")
 
 							el-col.campo(:span='24')
+								el-form-item(label='Arquivos do Aluno')
+								el-upload.upload-demo(drag, :before-upload='arquivoUpado', action='https://jsonplaceholder.typicode.com/posts/', :on-preview='handlePreview', :on-remove='handleRemove', :file-list='fileList', multiple)
+									i.el-icon-upload
+									.el-upload__text
+										| Arraste os arquivo ou 
+										em clique para fazer upload
+									.el-upload__tip(slot='tip')
+
+							el-col.campo(:span='24')
 
 								el-form-item
 									el-button( @click='limpar' ) Limpar

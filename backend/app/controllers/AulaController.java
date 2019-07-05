@@ -2,16 +2,22 @@ package controllers;
 
 import models.Aula;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class AulaController extends DefaultController {
 
-    public static void list(){
-        List<Aula> aula = new ArrayList<>();
+    public static void list(Integer id){
+        List<Aula> aulas = new ArrayList<>();
 
-        aula = Aula.findAll();
+        aulas = Aula.find("id_professor = :id_professor")
+                .setParameter("id_professor", id)
+                .fetch();
 
-        renderJSON(aula);
+        Collections.reverse(aulas);
+
+
+        renderJSON(aulas);
     }
 
     public static void save(Aula aula) {

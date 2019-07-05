@@ -1,5 +1,6 @@
 package controllers;
 
+import models.CategoriaPublicacao;
 import models.Publicacao;
 
 import java.util.ArrayList;
@@ -7,10 +8,12 @@ import java.util.Collections;
 import java.util.List;
 
 public class PublicacaoController extends DefaultController{
-    public static void list(){
+    public static void list(Integer id){
         List<Publicacao> publicacao = new ArrayList<>();
 
-        publicacao = Publicacao.findAll();
+        publicacao = Publicacao.find("id_professor = :id_professor")
+                .setParameter("id_professor", id)
+                .fetch();
 
         Collections.reverse(publicacao);
 
@@ -20,8 +23,14 @@ public class PublicacaoController extends DefaultController{
     public static void save(Publicacao publicacao) {
 
         if(publicacao == null || publicacao.nomeTituloPublicacao == null) {
-            renderText("Erro ao Salvar!");
+            renderError("Erro ao Salvar!");
             return;
+        }
+
+        publicacao.categoriaPublicacao = CategoriaPublicacao.findById(publicacao.categoriaPublicacao.id);
+
+        if(publicacao.projeto.id == null) {
+            publicacao.projeto = null;
         }
 
         publicacao.save();

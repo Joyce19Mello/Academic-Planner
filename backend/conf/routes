@@ -51,14 +51,14 @@ GET     /grupo/{id}                             GrupoController.listById
 # Rotas Projetos
 POST    /projeto/save                           ProjetoController.save
 POST    /projeto/edit/{id}                      ProjetoController.edit
-GET     /projeto/list                           ProjetoController.list
+GET     /projeto/list/{id}                      ProjetoController.list
 GET     /projeto/{id}                           ProjetoController.listById
 #GET     /projeto/delete/{id}                    ProjetoController.delete
 
 # Rotas Publicações
 POST    /publicacao/save                        PublicacaoController.save
 POST    /publicacao/edit/{id}                   PublicacaoController.edit
-GET     /publicacao/list                        PublicacaoController.list
+GET     /publicacao/list/{id}                   PublicacaoController.list
 GET     /publicacao/{id}                        PublicacaoController.listById
 #GET     /publicacao/delete/{id}                 PublicacaoController.delete
 

@@ -47,12 +47,13 @@
 
 							el-col.campo(:span='24')
 
-								el-upload.upload-demo(drag, action='https://jsonplaceholder.typicode.com/posts/', :on-preview='handlePreview', :on-remove='handleRemove', :file-list='fileList', multiple)
+								el-form-item(label='Arquivo bibtex')
+								el-upload.upload-demo(drag, :before-upload='arquivoUpado', action='https://jsonplaceholder.typicode.com/posts/', :on-preview='handlePreview', :on-remove='handleRemove', :file-list='fileList', multiple, accept=" .bib, .txt")
 									i.el-icon-upload
 									.el-upload__text
-										| Drop file here or 
-										em click to upload
-									.el-upload__tip(slot='tip') jpg/png files with a size less than 500kb
+										| Arraste um arquivo ou 
+										em clique para fazer upload
+									.el-upload__tip(slot='tip')
 
 							el-col.campo(:span='24')
 
@@ -93,10 +94,30 @@ export default {
 			},
 			tableData: [],
 			projetos: [],
-			categorias: []
+			categorias: [],
+			fileList: []
 		}
 	},
+	watch: {
+    	files (file) {
+			// console.log(file);
+    	}
+  	},
+
 	methods: {
+		arquivoUpado(file) {
+			if(file.name === 'citacao.bib') {
+				this.form.nomeTituloPublicacao = 'Parameter Selection for Principal Curves';
+				this.form.anoPublicacao = '2012';
+				this.form.categoriaPublicacao = {id: 1, tipoCategoriaPublicacao: 'conferência'};
+			}
+		},
+		handlePreview(file){
+			var reader = new FileReader();
+			// var oMyBlob = new Blob(file);
+			console.log(reader.readAsDataURL(file.raw));
+			// console.log(file.raw instanceof Blob);
+		},
 		limpar(){
 			this.form.nomeTituloPublicacao = '';
 			this.form.projeto = {};
@@ -147,13 +168,13 @@ export default {
 			this.form = JSON.parse(JSON.stringify(rows[index]));
 		},
 		findPublicacoes() {
-			PublicacaoService.listAll('publicacao/list')
+			PublicacaoService.listAll('publicacao/list', this.form.professor.id)
 				.then(result => {
 					this.tableData = result.data; 
 				});
 		},
 		findProjetos() {
-			ProjetoService.listAll('projeto/list')
+			ProjetoService.listAll('projeto/list', this.form.professor.id)
 				.then(result => {
 					this.projetos = result.data; 
 				});
@@ -229,4 +250,10 @@ export default {
 
 			&:hover
 				color: #57BC90
+
+	.el-upload
+		width: 100%
+
+		.el-upload-dragger
+			width: 100%
 </style>
